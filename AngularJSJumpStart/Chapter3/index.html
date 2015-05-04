@@ -1,0 +1,35 @@
+<html>
+<head>
+	<title>Controllers, Scope and Modules</title>
+</head>
+<body ng-controller="personController as pC">
+<br/>Filter Condition: <input type="text" data-ng-model="nameText.name"/>
+	<div>
+			<h3>Iterating over the Names</h3>
+			<ul>
+				<li ng-repeat="person in pC.People">{{person.name}}, who lives in: {{person.city}}</li>
+			</ul>
+	</div>
+	<br/>
+	<table>
+		<tr bgcolor="gray">
+			<th ng-click="doSort(name);">Name</th>
+			<th>City</th>
+			<th>Order Placed on:</th>
+		</tr>
+		<tr ng-repeat="person in pC.People | filter:nameText|orderBy:sortBy:reverse">
+			<td>
+				{{person.name}}
+			</td>
+			<td>
+				{{person.city}}
+			</td>
+			<td>
+				{{person.OrderPlaced |date}}
+			</td>
+		</tr>
+	</table>
+	<script src="../scripts/angular.js"></script>
+	<script src="app/controller/customerController.js"></script>
+</body>
+</html>

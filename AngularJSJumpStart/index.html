@@ -1,0 +1,43 @@
+<!doctype html>
+<html ng-app>
+	<head>
+		<title>
+			AngularJS Hello World!
+		</title>
+	</head>
+	<body ng-init="People=[{name:'Harry',city:'New Delhi',OrderPlaced:'04/14/2014'},{name:'Sally',city:'New York',OrderPlaced:'02/1/2015'},{name:'George',city:'Santa Clara',OrderPlaced:'11/09/2002'}]">
+		Name:<input type="text" ng-model="name"/>
+		<br/>
+		{{name}}
+
+	<br/>Filter Condition: <input type="text" data-ng-model="nameText.name"/>
+	<div>
+			<h3>Iterating over the Names</h3>
+			<ul>
+				<li ng-repeat="person in People">{{person.name}}, who lives in: {{person.city}}</li>
+			</ul>
+	</div>
+	<br/>
+	<table>
+
+		<tr bgcolor="gray">
+			<th ng-click="sortBy='name';reverse!=reverse">Name</th>
+			<th>City</th>
+			<th>Order Placed on:</th>
+		</tr>
+		<tr ng-repeat="person in People | filter:nameText|orderBy:sortBy:reverse">
+			<td>
+				{{person.name}}
+			</td>
+			<td>
+				{{person.city}}
+			</td>
+			<td>
+				{{person.OrderPlaced |date}}
+			</td>
+		</tr>
+	</table>
+		<script src="scripts/angular.js"></script>
+		<script src="app/controller/customerController.js"><type="text/javascript"></script>
+	</body>
+</html>
